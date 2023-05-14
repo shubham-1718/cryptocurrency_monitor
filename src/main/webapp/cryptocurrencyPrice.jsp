@@ -66,6 +66,7 @@
             <option value="tether">Tether (USDT)</option>
             <option value="dogecoin">Dogecoin (DOGE)</option>
             <option value="polygon">Polygon (MATIC)</option>
+            <option value="shiba-inu">Shiba Inu (SHIB)</option>
           </optgroup>
         </select>
         <br>
@@ -76,6 +77,38 @@
         <div class="price" id="result"></div>
       </form>
     </div>
-
+    <script>
+      $(document).ready(function() {
+            $('#cryptocurrency').change(function() {
+                var username = localStorage.getItem("username");
+                console.log(username);
+                var selectedCryptocurrency = $(this).val();
+                var ipAddress = $('#ipAddress').val();
+                if (selectedCryptocurrency != '') {
+                  $.ajax({
+                      url: 'cryptoCurrency',
+                      type: 'GET',
+                      data: {
+                        cryptocurrency: selectedCryptocurrency,
+                        ipAddress: ipAddress,
+                        username: username
+                      },
+                      success: function(response) {
+                        $("#result").html("Current unit price is + response);
+                          },
+                          error: function(xhr, status, error) {
+                            console.log(error);
+                          }
+                      });
+                  }
+                }); $('#show-history-btn').click(function() {
+                // Open new tab with the history.jsp page
+                var currentUrl = window.location.href;
+                var baseUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/') + 1);
+                var newTab = window.open(baseUrl + 'conversionHistory.jsp', '_blank');
+                newTab.focus();
+              });
+            });
+    </script>
   </body>
 </html>
