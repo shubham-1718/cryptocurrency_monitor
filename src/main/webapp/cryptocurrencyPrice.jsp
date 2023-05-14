@@ -66,7 +66,6 @@
             <option value="tether">Tether (USDT)</option>
             <option value="dogecoin">Dogecoin (DOGE)</option>
             <option value="polygon">Polygon (MATIC)</option>
-            <option value="shiba-inu">Shiba Inu (SHIB)</option>
           </optgroup>
         </select>
         <br>
