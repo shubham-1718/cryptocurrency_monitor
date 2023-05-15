@@ -29,5 +29,3 @@ public class StatusReport {
         this.responseStr = responseStr;
     }
 }
-
-
