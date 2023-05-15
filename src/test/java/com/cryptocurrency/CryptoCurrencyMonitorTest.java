@@ -1,12 +1,14 @@
 package com.cryptocurrency;
 
+import com.cryptocurrency.dao.ConversionHistoryDAO;
+import com.cryptocurrency.model.ConversionHistoryRecord;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,18 +23,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class CryptoCurrencyMonitorTest {
-
     @Mock
     private HttpServletRequest request;
     @Mock
     private HttpServletResponse response;
-
+    @Mock
+    private ConversionHistoryDAO conversionHistoryDAO;
     private CryptoCurrencyMonitor cryptoCurrencyMonitor;
 
     @Before
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        cryptoCurrencyMonitor = new CryptoCurrencyMonitor();
+       cryptoCurrencyMonitor = new CryptoCurrencyMonitor();
     }
 
     @Test
@@ -44,11 +46,15 @@ public class CryptoCurrencyMonitorTest {
 
         when(request.getParameter("cryptocurrency")).thenReturn(selectedCryptoCurrency);
         when(request.getParameter("ipAddress")).thenReturn("90.32.29.30");
+        when(request.getParameter("username")).thenReturn("user123");
+        when(conversionHistoryDAO.saveConversionHistory(any(ConversionHistoryRecord.class))).thenReturn(1);
+
 
         StringWriter stringWriter = new StringWriter();
         PrintWriter writer = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(writer);
 
+        cryptoCurrencyMonitor.init();
         cryptoCurrencyMonitor.doGet(request, response);
         writer.flush();
 
@@ -65,11 +71,14 @@ public class CryptoCurrencyMonitorTest {
 
         when(request.getParameter("cryptocurrency")).thenReturn(selectedCryptoCurrency);
         when(request.getParameter("ipAddress")).thenReturn("90.32.29.30");
+        when(request.getParameter("username")).thenReturn("user123");
+        when(conversionHistoryDAO.saveConversionHistory(any(ConversionHistoryRecord.class))).thenReturn(1);
 
         StringWriter stringWriter = new StringWriter();
         PrintWriter writer = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(writer);
 
+        cryptoCurrencyMonitor.init();
         cryptoCurrencyMonitor.doGet(request, response);
         writer.flush();
 
@@ -86,11 +95,14 @@ public class CryptoCurrencyMonitorTest {
 
         when(request.getParameter("cryptocurrency")).thenReturn(selectedCryptoCurrency);
         when(request.getParameter("ipAddress")).thenReturn("90.32.29.30");
+        when(request.getParameter("username")).thenReturn("user123");
+        when(conversionHistoryDAO.saveConversionHistory(any(ConversionHistoryRecord.class))).thenReturn(1);
 
         StringWriter stringWriter = new StringWriter();
         PrintWriter writer = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(writer);
 
+        cryptoCurrencyMonitor.init();
         cryptoCurrencyMonitor.doGet(request, response);
         writer.flush();
 
@@ -107,11 +119,14 @@ public class CryptoCurrencyMonitorTest {
 
         when(request.getParameter("cryptocurrency")).thenReturn(selectedCryptoCurrency);
         when(request.getParameter("ipAddress")).thenReturn("90.32.29.30");
+        when(request.getParameter("username")).thenReturn("user123");
+        when(conversionHistoryDAO.saveConversionHistory(any(ConversionHistoryRecord.class))).thenReturn(1);
 
         StringWriter stringWriter = new StringWriter();
         PrintWriter writer = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(writer);
 
+        cryptoCurrencyMonitor.init();
         cryptoCurrencyMonitor.doGet(request, response);
         writer.flush();
 
@@ -128,11 +143,14 @@ public class CryptoCurrencyMonitorTest {
 
         when(request.getParameter("cryptocurrency")).thenReturn(selectedCryptoCurrency);
         when(request.getParameter("ipAddress")).thenReturn("90.32.29.30");
+        when(request.getParameter("username")).thenReturn("user123");
+        when(conversionHistoryDAO.saveConversionHistory(any(ConversionHistoryRecord.class))).thenReturn(1);
 
         StringWriter stringWriter = new StringWriter();
         PrintWriter writer = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(writer);
 
+        cryptoCurrencyMonitor.init();
         cryptoCurrencyMonitor.doGet(request, response);
         writer.flush();
 
@@ -149,11 +167,14 @@ public class CryptoCurrencyMonitorTest {
 
         when(request.getParameter("cryptocurrency")).thenReturn(selectedCryptoCurrency);
         when(request.getParameter("ipAddress")).thenReturn("49.36.239.30");
+        when(request.getParameter("username")).thenReturn("user123");
+        when(conversionHistoryDAO.saveConversionHistory(any(ConversionHistoryRecord.class))).thenReturn(1);
 
         StringWriter stringWriter = new StringWriter();
         PrintWriter writer = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(writer);
 
+        cryptoCurrencyMonitor.init();
         cryptoCurrencyMonitor.doGet(request, response);
         writer.flush();
 
@@ -170,11 +191,14 @@ public class CryptoCurrencyMonitorTest {
 
         when(request.getParameter("cryptocurrency")).thenReturn(selectedCryptoCurrency);
         when(request.getParameter("ipAddress")).thenReturn("123.36.239.30");
+        when(request.getParameter("username")).thenReturn("user123");
+        when(conversionHistoryDAO.saveConversionHistory(any(ConversionHistoryRecord.class))).thenReturn(1);
 
         StringWriter stringWriter = new StringWriter();
         PrintWriter writer = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(writer);
 
+        cryptoCurrencyMonitor.init();
         cryptoCurrencyMonitor.doGet(request, response);
         writer.flush();
 
@@ -191,11 +215,14 @@ public class CryptoCurrencyMonitorTest {
 
         when(request.getParameter("cryptocurrency")).thenReturn(selectedCryptoCurrency);
         when(request.getParameter("ipAddress")).thenReturn("21.32.29.30");
+        when(request.getParameter("username")).thenReturn("user123");
+        when(conversionHistoryDAO.saveConversionHistory(any(ConversionHistoryRecord.class))).thenReturn(1);
 
         StringWriter stringWriter = new StringWriter();
         PrintWriter writer = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(writer);
 
+        cryptoCurrencyMonitor.init();
         cryptoCurrencyMonitor.doGet(request, response);
         writer.flush();
 
@@ -211,11 +238,14 @@ public class CryptoCurrencyMonitorTest {
         String pattern = "₹\\s\\d+(\\.\\d+)?";
 
         when(request.getParameter("cryptocurrency")).thenReturn(selectedCryptoCurrency);
+        when(request.getParameter("username")).thenReturn("user123");
+        when(conversionHistoryDAO.saveConversionHistory(any(ConversionHistoryRecord.class))).thenReturn(1);
 
         StringWriter stringWriter = new StringWriter();
         PrintWriter writer = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(writer);
 
+        cryptoCurrencyMonitor.init();
         cryptoCurrencyMonitor.doGet(request, response);
         writer.flush();
 
@@ -232,6 +262,8 @@ public class CryptoCurrencyMonitorTest {
 
         when(request.getParameter("cryptocurrency")).thenReturn(selectedCryptoCurrency);
         when(request.getParameter("ipAddress")).thenReturn("3456.251.8.0");
+        when(request.getParameter("username")).thenReturn("user123");
+
 
         StringWriter stringWriter = new StringWriter();
         PrintWriter writer = new PrintWriter(stringWriter);
@@ -249,13 +281,16 @@ public class CryptoCurrencyMonitorTest {
     @Test
     @DisplayName("Test to return price for bitcoin cryptocurrency with Success")
     public void testGetCryptoCurrencyPrice_Success() throws Exception {
+
         String selectedCryptoCurrency = "bitcoin";
         String pattern = "^\\d+(\\.\\d+)?$";
 
         when(request.getParameter("cryptocurrency")).thenReturn(selectedCryptoCurrency);
         when(request.getParameter("ipAddress")).thenReturn("90.32.29.30");
+        when(request.getParameter("username")).thenReturn("user123");
+        when(conversionHistoryDAO.saveConversionHistory(any(ConversionHistoryRecord.class))).thenReturn(1);
 
-        // Invoke the method under test
+        cryptoCurrencyMonitor.init();
         String result = cryptoCurrencyMonitor.getCryptoCurrencyPrice(request, selectedCryptoCurrency);
         System.out.println(result);
 
@@ -265,25 +300,25 @@ public class CryptoCurrencyMonitorTest {
     @Test
     @DisplayName("Test to return price for bitcoin cryptocurrency but with JSON Exception")
     public void testGetCryptoCurrencyPrice_JSONException() throws Exception {
+
         String selectedCryptoCurrency = "bitcoin";
 
         when(request.getParameter("cryptocurrency")).thenReturn(selectedCryptoCurrency);
         when(request.getParameter("ipAddress")).thenReturn("90.32.29.30");
+        when(request.getParameter("username")).thenReturn("user123");
 
-        JSONObject jsonObject = mock(JSONObject.class);
+        CryptoCurrencyMonitor currencyMonitor = spy(new CryptoCurrencyMonitor());
+        doThrow(JSONException.class).when(currencyMonitor).getCryptoCurrencyResponse(selectedCryptoCurrency);
 
-        // Mock the creation of JSONObject and throw JSONException
-        Mockito.doThrow(new JSONException("JSON parsing error")).when(jsonObject).getJSONObject("data");
-
-        String result = cryptoCurrencyMonitor.getCryptoCurrencyPrice(request, selectedCryptoCurrency);
-
-        assertEquals("Error: JSON parsing error", result);
+        Assertions.assertThrows(JSONException.class, () -> {
+            currencyMonitor.getCryptoCurrencyPrice(request, selectedCryptoCurrency);
+        });
     }
 
     @Test
     @DisplayName("Test to return currency details for bitcoin cryptocurrency")
     public void testGetCryptoCurrencyResponse() {
-        // Prepare test data
+
         String selectedCryptoCurrency = "bitcoin";
 
         String actualResponse = cryptoCurrencyMonitor.getCryptoCurrencyResponse(selectedCryptoCurrency);
@@ -300,9 +335,10 @@ public class CryptoCurrencyMonitorTest {
     @Test
     @DisplayName("Test to return client Ip address with XForwardedForHeader")
     public void testGetClientIpAddress_WithXForwardedForHeader() {
-        // Prepare test data
+
         String expectedIpAddress = "90.32.29.30";
         when(request.getHeader("X-Forwarded-For")).thenReturn(expectedIpAddress);
+        when(request.getParameter("username")).thenReturn("user123");
 
         String actualIpAddress = cryptoCurrencyMonitor.getClientIpAddress(request);
 
@@ -312,9 +348,10 @@ public class CryptoCurrencyMonitorTest {
     @Test
     @DisplayName("Test to return client Ip address without XForwardedForHeader")
     public void testGetClientIpAddress_WithoutXForwardedForHeader() {
-        // Prepare test data
+
         String expectedIpAddress = "90.32.29.30";
         when(request.getHeader("X-Forwarded-For")).thenReturn(null);
+        when(request.getParameter("username")).thenReturn("user123");
 
         String actualIpAddress = cryptoCurrencyMonitor.getClientIpAddress(request);
 
@@ -337,11 +374,13 @@ public class CryptoCurrencyMonitorTest {
     @Test
     @DisplayName("Test to return currency code for given in-valid ip address")
     public void testGetCurrencyCode_Error() throws IOException, JSONException {
-        // Prepare test data
+
         String expectedCurrencyCode = "Error";
         String ipAddress = "3456.251.8.0";
 
         String actualCurrencyCode = cryptoCurrencyMonitor.getCurrencyCode(ipAddress);
+        when(request.getParameter("username")).thenReturn("user123");
+
 
         assertEquals(expectedCurrencyCode, actualCurrencyCode);
     }
@@ -349,7 +388,7 @@ public class CryptoCurrencyMonitorTest {
     @Test
     @DisplayName("Test to return exchange rate with base USD for USD as same currencyCode")
     public void testGetExchangeRate_Success() throws IOException, JSONException {
-        // Prepare test data
+
         String currencyCode = "USD";
         String pattern = "^[+]?\\d*\\.\\d+$";
 
@@ -361,7 +400,7 @@ public class CryptoCurrencyMonitorTest {
     @Test
     @DisplayName("Test to return exchange rate with base USD for EUR as different currencyCode")
     public void testGetExchangeRate_WithAnotherCurrency() throws IOException, JSONException {
-        // Prepare test data
+
         String currencyCode = "EUR";
         String pattern = "^[+]?\\d*\\.\\d+$";
 

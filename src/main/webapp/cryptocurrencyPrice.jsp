@@ -93,7 +93,7 @@
                         username: username
                       },
                       success: function(response) {
-                        $("#result").html(" < p > Current unit price is < /p> < p > " + response + " < /p>");
+                        $("#result").html("<p>Current unit price is</p><p>" + response + "</p>");
                           },
                           error: function(xhr, status, error) {
                             console.log(error);
