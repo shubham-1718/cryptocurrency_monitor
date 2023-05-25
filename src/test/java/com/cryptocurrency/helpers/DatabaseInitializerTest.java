@@ -18,7 +18,7 @@ class DatabaseInitializerTest {
         databaseInitializer = new DatabaseInitializer();
     }
     @Test
-    @DisplayName("")
+    @DisplayName("Test the constructor to verify database configuration")
     void testConstructor() throws ServletException {
         ConversionHistoryDAO conversionHistoryDAO = (new DatabaseInitializer()).getConversionHistoryDAO();
         assertEquals("root", conversionHistoryDAO.getDbPassword());

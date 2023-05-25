@@ -157,6 +157,7 @@ public class ConversionHistoryTest {
         verify(request).getParameter(Mockito.<String>any());
         verify(response).setContentType(Mockito.<String>any());
     }
+    /*Function to get JSON response from list*/
     private String getExpectedJsonResponse(List < ConversionHistoryRecord > conversionHistoryList) {
         Gson gson = new Gson();
         return gson.toJson(conversionHistoryList);
