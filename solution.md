@@ -50,6 +50,22 @@ The application includes unit tests written using JUnit and Mockito. The tests c
 1. Clone the project repository from GitHub or a similar platform.
 2. Ensure that the required dependencies mentioned in the pom.xml file are available.
 3. Set up the MySQL database and create the necessary tables using the provided SQL queries.
+    ```
+    CREATE TABLE conversion_history (
+    recordId INT NOT NULL,
+    conversionDate VARCHAR(255) NOT NULL,
+    cryptocurrency VARCHAR(255) NOT NULL,
+    convertedAmount VARCHAR(255) NOT NULL,
+    fromCurrency VARCHAR(255) NOT NULL,
+    toCurrency VARCHAR(255) NOT NULL,
+    FOREIGN KEY (recordId) REFERENCES user_data(recordId)
+    );
+    
+    CREATE TABLE user_data (
+    userName VARCHAR(255) NOT NULL,
+    recordId INT PRIMARY KEY AUTO_INCREMENT
+    );
+    ```
 4. Configure the database connection details in the DatabaseInitializer class.
 5. Build the project using Maven or an IDE that supports Maven.
 6. Deploy the generated WAR file to a servlet container such as Apache Tomcat.
