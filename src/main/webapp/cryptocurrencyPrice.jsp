@@ -19,6 +19,11 @@
         height: 100%;
       }
 
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
       select,
       input[type="text"] {
         width: 250px;
@@ -57,6 +62,9 @@
   </head>
   <body>
     <div class="center">
+      <div class="header">
+        <h2>Explore the world of cryptocurrencies and discover their real-time rates</h2>
+      </div>
       <form>
         <select id="cryptocurrency">
           <option value="" selected disabled>Select Cryptocurrency</option>
@@ -93,7 +101,7 @@
                         username: username
                       },
                       success: function(response) {
-                        $("#result").html("<p>Current unit price is</p><p>" + response + "</p>");
+                        $("#result").html(response);
                           },
                           error: function(xhr, status, error) {
                             console.log(error);

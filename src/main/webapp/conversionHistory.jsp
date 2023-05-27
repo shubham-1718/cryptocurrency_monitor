@@ -60,6 +60,7 @@
   </head>
   <body>
     <div class="center">
+    <h2>Conversion History Details</h2>
       <form>
         <table id="history-table">
           <thead>

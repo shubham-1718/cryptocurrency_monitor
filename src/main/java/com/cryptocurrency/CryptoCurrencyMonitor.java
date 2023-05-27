@@ -44,14 +44,13 @@ public class CryptoCurrencyMonitor extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         String selectedCryptoCurrency = request.getParameter("cryptocurrency");
-
         String cryptoCurrencyPrice = getCryptoCurrencyPrice(request, selectedCryptoCurrency);
 
         response.setContentType("text/html;charset=UTF-8");
         if (cryptoCurrencyPrice.contains("Error"))
-            response.getWriter().write(cryptoCurrencyPrice);
+            response.getWriter().write("<p style=\"color: red;\">"+cryptoCurrencyPrice+"</p>");
         else
-            response.getWriter().write(currencySymbol + " " + cryptoCurrencyPrice);
+            response.getWriter().write("<p>Current unit price is</p><p>" + currencySymbol + " " + cryptoCurrencyPrice + "</p>");
     }
 
     @Override
@@ -73,8 +72,8 @@ public class CryptoCurrencyMonitor extends HttpServlet {
             }
 
             String currencyCode = getCurrencyCode(ipAddress);
-            if (currencyCode.equals("Error")) {
-                return "Error while fetching the currency code";
+            if (currencyCode.contains("Error")) {
+                return currencyCode;
             }
 
             double exchangeRate = getExchangeRate(currencyCode);
@@ -129,7 +128,7 @@ public class CryptoCurrencyMonitor extends HttpServlet {
         StatusReport statusReport = currencyCodeRequest.getStatusReport();
 
         if (statusReport.getResponseCode() != 200) {
-            return "Error";
+            return "Error : while fetching the currency";
         }
 
         JSONObject jsonObject = new JSONObject(statusReport.getResponseStr());
