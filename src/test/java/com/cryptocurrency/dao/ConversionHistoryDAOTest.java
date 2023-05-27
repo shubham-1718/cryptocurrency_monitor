@@ -2,13 +2,13 @@ package com.cryptocurrency.dao;
 
 import com.cryptocurrency.helpers.DatabaseInitializer;
 import com.cryptocurrency.model.ConversionHistoryRecord;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import javax.servlet.ServletException;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -21,7 +21,7 @@ public class ConversionHistoryDAOTest {
     private ResultSet mockResultSet;
     private ConversionHistoryDAO conversionHistoryDAO;
 
-    @Before
+    @BeforeEach
     public void setUp() throws ServletException {
         mockConnection = mock(Connection.class);
         mockPreparedStatement = mock(PreparedStatement.class);

@@ -4,8 +4,8 @@ import com.cryptocurrency.dao.ConversionHistoryDAO;
 import com.cryptocurrency.model.ConversionHistoryRecord;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.mockito.Mock;
@@ -18,8 +18,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class CryptoCurrencyMonitorTest {
@@ -31,7 +30,7 @@ public class CryptoCurrencyMonitorTest {
     private ConversionHistoryDAO conversionHistoryDAO;
     private CryptoCurrencyMonitor cryptoCurrencyMonitor;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
        cryptoCurrencyMonitor = new CryptoCurrencyMonitor();
