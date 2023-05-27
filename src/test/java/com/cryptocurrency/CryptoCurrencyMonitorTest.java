@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -58,7 +60,9 @@ public class CryptoCurrencyMonitorTest {
         writer.flush();
 
         verify(response).setContentType("text/html;charset=UTF-8");
-        assertTrue(stringWriter.toString().trim().matches(pattern));
+        String extractPrice = extractUnitPrice(stringWriter.toString().trim());
+        assert extractPrice != null;
+        assertTrue(extractPrice.matches(pattern));
     }
 
     @Test
@@ -82,7 +86,9 @@ public class CryptoCurrencyMonitorTest {
         writer.flush();
 
         verify(response).setContentType("text/html;charset=UTF-8");
-        assertTrue(stringWriter.toString().trim().matches(pattern));
+        String extractPrice = extractUnitPrice(stringWriter.toString().trim());
+        assert extractPrice != null;
+        assertTrue(extractPrice.matches(pattern));
     }
 
     @Test
@@ -106,7 +112,9 @@ public class CryptoCurrencyMonitorTest {
         writer.flush();
 
         verify(response).setContentType("text/html;charset=UTF-8");
-        assertTrue(stringWriter.toString().trim().matches(pattern));
+        String extractPrice = extractUnitPrice(stringWriter.toString().trim());
+        assert extractPrice != null;
+        assertTrue(extractPrice.matches(pattern));
     }
 
     @Test
@@ -130,7 +138,9 @@ public class CryptoCurrencyMonitorTest {
         writer.flush();
 
         verify(response).setContentType("text/html;charset=UTF-8");
-        assertTrue(stringWriter.toString().trim().matches(pattern));
+        String extractPrice = extractUnitPrice(stringWriter.toString().trim());
+        assert extractPrice != null;
+        assertTrue(extractPrice.matches(pattern));
     }
 
     @Test
@@ -154,7 +164,9 @@ public class CryptoCurrencyMonitorTest {
         writer.flush();
 
         verify(response).setContentType("text/html;charset=UTF-8");
-        assertTrue(stringWriter.toString().trim().matches(pattern));
+        String extractPrice = extractUnitPrice(stringWriter.toString().trim());
+        assert extractPrice != null;
+        assertTrue(extractPrice.matches(pattern));
     }
 
     @Test
@@ -178,7 +190,9 @@ public class CryptoCurrencyMonitorTest {
         writer.flush();
 
         verify(response).setContentType("text/html;charset=UTF-8");
-        assertTrue(stringWriter.toString().trim().matches(pattern));
+        String extractPrice = extractUnitPrice(stringWriter.toString().trim());
+        assert extractPrice != null;
+        assertTrue(extractPrice.matches(pattern));
     }
 
     @Test
@@ -202,7 +216,9 @@ public class CryptoCurrencyMonitorTest {
         writer.flush();
 
         verify(response).setContentType("text/html;charset=UTF-8");
-        assertTrue(stringWriter.toString().trim().matches(pattern));
+        String extractPrice = extractUnitPrice(stringWriter.toString().trim());
+        assert extractPrice != null;
+        assertTrue(extractPrice.matches(pattern));
     }
 
     @Test
@@ -226,7 +242,9 @@ public class CryptoCurrencyMonitorTest {
         writer.flush();
 
         verify(response).setContentType("text/html;charset=UTF-8");
-        assertTrue(stringWriter.toString().trim().matches(pattern));
+        String extractPrice = extractUnitPrice(stringWriter.toString().trim());
+        assert extractPrice != null;
+        assertTrue(extractPrice.matches(pattern));
     }
 
     @Test
@@ -249,7 +267,9 @@ public class CryptoCurrencyMonitorTest {
         writer.flush();
 
         verify(response).setContentType("text/html;charset=UTF-8");
-        assertTrue(stringWriter.toString().trim().matches(pattern));
+        String extractPrice = extractUnitPrice(stringWriter.toString().trim());
+        assert extractPrice != null;
+        assertTrue(extractPrice.matches(pattern));
     }
 
     @Test
@@ -374,7 +394,7 @@ public class CryptoCurrencyMonitorTest {
     @DisplayName("Test to return currency code for given in-valid ip address")
     public void testGetCurrencyCode_Error() throws IOException, JSONException {
 
-        String expectedCurrencyCode = "Error";
+        String expectedCurrencyCode = "Error : while fetching the currency";
         String ipAddress = "3456.251.8.0";
 
         String actualCurrencyCode = cryptoCurrencyMonitor.getCurrencyCode(ipAddress);
@@ -406,5 +426,17 @@ public class CryptoCurrencyMonitorTest {
         double actualExchangeRate = cryptoCurrencyMonitor.getExchangeRate(currencyCode);
 
         assertTrue(String.valueOf(actualExchangeRate).matches(pattern));
+    }
+
+    public static String extractUnitPrice(String input) {
+        String pattern = "<p>[^<]+</p><p>([^<]+)</p>";
+        Pattern regex = Pattern.compile(pattern);
+        Matcher matcher = regex.matcher(input);
+
+        if (matcher.find()) {
+            return matcher.group(1).trim();
+        } else {
+            return null;
+        }
     }
 }
